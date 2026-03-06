@@ -19,19 +19,19 @@ export const filterSlice = createSlice({
       return {
         ...state,
         query: action.payload,
-      }
+      };
     },
 
     setStatus: (state, action: PayloadAction<Status>) => {
       return {
         ...state,
         status: action.payload,
-      }
+      };
     },
 
     resetFilters: (): FilterState => ({
-          query: '',
-          status: 'all',
+      query: '',
+      status: 'all',
     }),
   },
 });
