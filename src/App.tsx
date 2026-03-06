@@ -8,7 +8,6 @@ import { setTodos } from './features/todos';
 import { useAppDispatch, useAppSelector } from './app/store';
 
 export const App = () => {
-  // const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [modal, setModal] = useState<boolean>(false);
   const [selectedTodoId, setSelectedTodoId] = useState<number | null>(null);

@@ -18,28 +18,28 @@ export const TodoModal: React.FC<Props> = ({
   onSwitch,
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const useId = selectedTodo?.userId;
+  const userId = selectedTodo?.userId || 1;
 
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.currentTodo);
 
-  useEffect(() => {
-    if (!switchMode) {
-      return;
-    }
+    useEffect(() => {
+      if (!switchMode) {
+        return;
+      }
 
-    setLoading(true);
-    // setUser(null);
-    getUser(useId)
-      .then(data => {
-        dispatch(setUser(data));
-      })
-      .catch(error => {
-        // eslint-disable-next-line no-console
-        console.error('Error fetching userId', error);
-      })
-      .finally(() => setLoading(false));
-  }, [selectedTodo, switchMode, useId]);
+      setLoading(true);
+      getUser(userId)
+        .then(data => {
+          dispatch(setUser(data));
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.error('Error fetching userId', error);
+        })
+        .finally(() => setLoading(false));
+    }, [selectedTodo, switchMode, userId]);
+  
   const handleClose = () => {
     dispatch(clearUser());
     onSwitch(false);
@@ -66,7 +66,6 @@ export const TodoModal: React.FC<Props> = ({
               {'Todo #' + selectedTodo?.id}
             </div>
 
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label*/}
             <button
               type="button"
               className="delete"
